@@ -1,0 +1,35 @@
+{% extends 'App/base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Bebidas
+{% endblock %}
+
+{% block codigoDinamico %}
+<div class="container">
+    <h1> Bebidas </h1> <br> <br> <br>
+{% for bebida in bebida %}
+    <div class="container">
+        <table class="table table-hover text-center">
+            <tbody>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Precio</th>
+                <tr class="table-secondary text-center">
+                    <th>  {{ bebida.id }}</th>
+                    <td>  {{ bebida.nombre }}</td>
+                    <td> ${{ bebida.precio }}</td>
+            </tbody>
+        </table>
+    </div>
+    <div class="container">
+        <button type="button" class="btn btn-outline-success">
+            <a href="{% url 'Crear Bebida' %}">Nueva Bebida</a>
+        </button>
+    </div>
+
+</div>
+{% endfor %}
+
+{% endblock %}

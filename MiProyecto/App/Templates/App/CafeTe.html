@@ -1,0 +1,35 @@
+{% extends 'App/base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Cafe/Te
+{% endblock  %}
+
+{% block codigoDinamico %}
+<div class="container">
+    <h1> Cafe/Te </h1> <br> <br> <br>
+{% for cafete in cafete %}
+    <div class="container">
+        <table class="table table-hover text-center">
+            <tbody>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre </th>
+                <th scope="col">Precio </th>
+                <tr class="table-secondary text-center">
+                    <th>{{ cafete.id }}</th>
+                    <td>{{ cafete.nombre }}</td>
+                    <td>{{ cafete.precio }}</td>
+            </tbody>
+        </table>
+    </div>
+    <div class="container">
+        <button type="button" class="btn btn-outline-success">
+            <a href="{% url 'Crear CafeTe' %}">Nueva Cafe/Te</a>
+        </button>
+    </div>
+
+</div>
+{% endfor %}
+
+{% endblock %}

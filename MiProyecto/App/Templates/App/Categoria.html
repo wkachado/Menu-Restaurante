@@ -24,7 +24,16 @@
     <div class="container">
         <button type="button" class="btn btn-outline-success">
             <a href="{% url 'Crear Categoria' %}">Nueva Categoria</a>
-        </button>
+        </button> &nbsp; &nbsp;&nbsp;
+        <button type="button" class="btn btn-outline-light">
+            <a href="{% url 'Buscar Categoria' %}">Buscar Categoria</a>
+        </button> &nbsp; &nbsp;&nbsp;
+        <button type="button" class="btn btn-outline-info">
+            <a href="{% url 'Actualizar Categoria' categoria_id=categoria.id %}">Actualizar Categoria</a>
+        </button> &nbsp; &nbsp;&nbsp;
+        <button type="button" class="btn btn-outline-danger">
+            <a href="{% url 'Eliminar Categoria' categoria_id=categoria.id %}">Eliminar Categoria</a>
+        </button> &nbsp; &nbsp;&nbsp;
     </div>
 
 </div>

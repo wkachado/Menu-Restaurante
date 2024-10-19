@@ -30,7 +30,17 @@
     <div class="container">
         <button type="button" class="btn btn-outline-success">
             <a href="{% url 'Crear Comida' %}">Nueva Comida</a>
-        </button>
+        </button> &nbsp; &nbsp; &nbsp;
+        <button type="button" class="btn btn-outline-light">
+            <a  href="{% url 'Buscar Comida' %}">Buscar Comida</a>
+        </button> &nbsp; &nbsp;&nbsp;
+        <button type="button" class="btn btn-outline-info">
+            <a href="{% url 'Actualizar Comida' comida_id=comida.id %}">Actualizar Comida</a>
+        </button> &nbsp; &nbsp;&nbsp;
+        <button type="button" class="btn btn-outline-danger">
+            <a href="{% url 'Eliminar Comida' comida_id=comida.id %}">Eliminar Comida</a>
+        </button> &nbsp; &nbsp;&nbsp;
+                
     </div>
 
 </div>

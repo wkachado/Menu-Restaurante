@@ -14,18 +14,27 @@
         <table class="table table-hover text-center">
             <tbody>
                 <th scope="col">ID</th>
+                <th scope="col">Sector</th>
                 <tr class="table-secondary text-center">
-                    <th>  {{ mesa.id }}</th>
+                    <td>  {{ mesa.id }}</td>
+                    <td> {{ mesa.sector }}</td>
             </tbody>
         </table>
     </div>
     <div class="container">
         <button type="button" class="btn btn-outline-success">
             <a href="{% url 'Crear Mesa' %}">Nueva Mesa</a>
-        </button>
+        </button> &nbsp; &nbsp;&nbsp;
+        <button type="button" class="btn btn-outline-light">
+            <a href="{% url 'Buscar Mesa' %}">Buscar Mesa</a>
+        </button> &nbsp; &nbsp;&nbsp;
+        <button type="button" class="btn btn-outline-info">
+            <a href="{% url 'Actualizar Mesa' id=mesa.id %}">Actualizar Mesa</a>
+        </button> &nbsp; &nbsp;&nbsp;
+        <button type="button" class="btn btn-outline-danger">
+            <a href="{% url 'Eliminar Mesa' mesa_id=mesa.id %}">Eliminar Mesa</a>
+        </button> &nbsp; &nbsp;&nbsp;
     </div>
-
 </div>
 {% endfor %}
-
 {% endblock %}

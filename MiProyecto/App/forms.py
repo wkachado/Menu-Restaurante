@@ -36,8 +36,10 @@ class Crear_CafeTe_forms(forms.Form):
     nombre = forms.CharField(max_length=50)
     precio = forms.FloatField()
 
-class Crear_Mesa_forms(forms.Form):
-    numero_mesa = forms.IntegerField()
+class Crear_Mesa_forms(forms.ModelForm):
+    class Meta:
+        model = Mesa
+        fields = ['sector']
 
 class Crear_Pedido_forms(forms.Form):
     mesa = forms.ModelChoiceField(queryset=Mesa.objects.all())

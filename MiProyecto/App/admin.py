@@ -9,3 +9,5 @@ admin.site.register(Postre)
 admin.site.register(CafeTe)
 admin.site.register(Mesa)
 admin.site.register(Adicional)
+admin.site.register(Pedido)
+

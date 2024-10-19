@@ -27,7 +27,16 @@
     <div class="container">
         <button type="button" class="btn btn-outline-success">
             <a href="{% url 'Crear Guarnicion' %}">Nueva guarnicion</a>
-        </button>
+        </button> &nbsp; &nbsp;&nbsp;
+        <button type="button" class="btn btn-outline-light">
+            <a href="{% url 'Buscar Guarnicion' %}">Buscar Guarnicion</a>
+        </button> &nbsp; &nbsp;&nbsp;
+        <button type="button" class="btn btn-outline-info">
+            <a href="{% url 'Actualizar Guarnicion' guarnicion_id=guarnicion.id %}">Actualizar Guarnicion</a>
+        </button> &nbsp; &nbsp;&nbsp;
+        <button type="button" class="btn btn-outline-danger">
+            <a href="{% url 'Eliminar Guarnicion' guarnicion_id=guarnicion.id %}">Eliminar Guarnicion</a>
+        </button> &nbsp; &nbsp;&nbsp;
     </div>
     {% endfor %}
 </div>

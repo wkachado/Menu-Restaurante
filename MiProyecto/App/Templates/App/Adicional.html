@@ -25,7 +25,16 @@
         <div class="container">
             <button type="button" class="btn btn-outline-success">
                 <a href="{% url 'Crear Adicional' %}">Nuevo Adicional</a>
-            </button>
+            </button> &nbsp; &nbsp; &nbsp;
+            <button type="button" class="btn btn-outline-light">
+                <a  href="{% url 'Buscar Adicional' %}">Buscar Adicional</a>
+            </button> &nbsp; &nbsp;&nbsp;
+            <button type="button" class="btn btn-outline-info">
+                <a href="{% url 'Actualizar Adicional' adicional_id=adicional.id %}">Actualizar Adicional</a>
+            </button> &nbsp; &nbsp;&nbsp;
+            <button type="button" class="btn btn-outline-danger">
+                <a href="{% url 'Eliminar Adicional' adicional_id=adicional.id %}">Eliminar Adicional</a>
+            </button> &nbsp; &nbsp;&nbsp;
         </div>
     </div>
 </div>

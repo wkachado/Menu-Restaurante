@@ -38,7 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'App',
+    'crispy_forms',
+    'crispy_bootstrap5',
+
 ]
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -130,3 +134,14 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# settings.py
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # Solo esta línea
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'french.restaurante@gmail.com'
+EMAIL_HOST_PASSWORD = 'tumgkyknovionzfq'  # Asegúrate de que esto sea correcto y seguro
+DEFAULT_FROM_EMAIL = 'french.restaurante@gmail.com'
+CONTACT_EMAIL = 'french.restaurante@gmail.com'

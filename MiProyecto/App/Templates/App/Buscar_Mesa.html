@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block title %}
-    Buscar Bebidas
+    Buscar Mesa
 {% endblock title %}
 
 {% block codigoDinamico %}
@@ -12,7 +12,7 @@
     <br> <br> <br>
     <form action="" method="get">
 
-        <input type="text" name="id" id="id" placeholder="buscar mesa">
+        <input type="text" name="numero_mesa" id="numero_mesa" placeholder="Buscar Numero de Mesa">
         <br> <br> <br>
         <input type="submit" value="Buscar Mesa" class="btn btn-outline-light">
 
@@ -25,9 +25,11 @@
             <tbody>
                 <th scope="col">ID</th>
                 <th scope="col">Sector</th>
+                <th scope="col"> Numero Mesa</th>
                 <tr class="table-secondary text-center">
                     <td>  {{ mesa.id }}</td>
-                    <td> {{ mesa.sector }}</td>
+                    <td>  {{ mesa.sector }}</td>
+                    <td>  {{ mesa.numero_mesa }}</td>
             </tbody>
         </table>
         {% endfor %}

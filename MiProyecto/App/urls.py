@@ -6,6 +6,7 @@ urlpatterns = [
     path('bebidas/', views.mostrar_bebidas, name='Bebidas'),
     path('comidas/', views.mostrar_comida, name='Comida'),
     path('pedidos/', views.mostrar_pedidos, name='Pedido'),
+    path('pedidos_cliente/', views.mostrar_pedidos_cliente, name='Mostrar Pedidos Cliente'),
     path('categorias/', views.mostrar_categoria, name='Categoria'),
     path('guarniciones/', views.mostrar_guarnicion, name='Guarnicion'),
     path('CafeTe/', views.mostrar_cafe_te, name='CafeTe'),
@@ -22,6 +23,7 @@ urlpatterns = [
     path('crear_cafete/', views.crear_cafete, name='Crear CafeTe'),
     path('crear_mesa/', views.crear_mesa, name='Crear Mesa'),
     path('crear_pedido/', views.crear_pedido, name='Crear Pedido'),
+    path('crear_pedido_cliente/', views.crear_pedido_cliente, name='Crear Pedido Cliente'),
     path('buscar_comida/', views.buscar_comida, name='Buscar Comida'),
     path('buscar_adicional/', views.buscar_adicional, name='Buscar Adicional'),
     path('buscar_guarnicion/', views.buscar_guarnicion, name='Buscar Guarnicion'),
@@ -49,6 +51,14 @@ urlpatterns = [
     path('eliminar_adicional/<int:adicional_id>/', views.eliminar_adicional, name='Eliminar Adicional'),
     path('eliminar_cafete/<cafete_id>/', views.eliminar_cafete, name='Eliminar CafeTe'),
     path('eliminar_postre/<postre_id>/', views.eliminar_postre, name='Eliminar Postre'),
+    path('registro/', views.registro_usuario,name='Registro'),
+    path('login/', views.login_request, name= 'login'),
+    path('logout/', views.logout_request,name='logout'),
+    path('politica_privacidad/', views.politica_privacidad, name= 'Politica Privacidad'),
+    path('terminos_condiciones/', views.terminos_condiciones, name= 'Terminos Condiciones'),
+    path('contacto/',views.contacto,name='Contacto'),
+    path('gracias/',views.pagina_de_gracias,name='pagina_de_gracias'),
+    path('mensajes/', views.listar_mensajes,name='Listar Mensajes'),
 
 
 ]

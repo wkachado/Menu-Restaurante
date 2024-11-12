@@ -1,10 +1,19 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from App.models import *
 from .forms import (
     Crear_Comida_forms, Crear_Categoria_forms, Crear_Adicional_forms,
     Crear_Guarnicion_forms, Crear_Bebida_forms, Crear_Postre_forms,
-    Crear_CafeTe_forms, Crear_Mesa_forms, Crear_Pedido_forms
+    Crear_CafeTe_forms, Crear_Mesa_forms, Crear_Pedido_forms ,Crear_Pedido_Cliente_Forms, UserRegisterForm,
 )
+from django.contrib import messages
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.forms import AuthenticationForm
+from django.core.mail import EmailMessage, send_mail
+from django.conf import settings
+from django.contrib import admin
+from django.core.paginator import Paginator
+from django.template.loader import render_to_string
+
 
 def mostrar_index(request):
 
@@ -173,9 +182,9 @@ def crear_mesa(request):
         form = Crear_Mesa_forms(request.POST)
         if form.is_valid():
             formulario_limpio = form.cleaned_data
-            mesa = Mesa(numero_mesa=formulario_limpio['numero_mesa'])
+            mesa = Mesa(numero_mesa=formulario_limpio['numero_mesa'], sector=formulario_limpio['sector'])
             mesa.save()
-            return render(request,'App/index.html')
+            return render(request, 'App/index.html')
     else:
         form = Crear_Mesa_forms()
     return render(request, 'App/Crear_Mesa.html', {'form': Crear_Mesa_forms})
@@ -262,15 +271,17 @@ def buscar_cafete(request):
     return render(request, 'App/Buscar_CafeTe.html', {'respuesta': respuesta})
 
 def buscar_mesa(request):
+    if request.GET.get('numero_mesa', False):
+        numero_mesa = request.GET['numero_mesa']
 
-    if request.GET.get('id', False):
-        id = request.GET['id']
-        mesa = Mesa.objects.filter(id__icontains=id)
+        mesa = Mesa.objects.filter(numero_mesa__exact=numero_mesa)
 
         return render(request, 'App/Buscar_Mesa.html', {'mesa': mesa})
     else:
-        respuesta ='No hay datos'
+        respuesta = 'No hay datos'
     return render(request, 'App/Buscar_Mesa.html', {'respuesta': respuesta})
+
+
 
 
 def buscar_categoria(request):
@@ -465,7 +476,9 @@ def actualizar_postre(request,postre_id):
 
 
 def actualizar_pedido(request, pedido_id):
+
     pedido = Pedido.objects.get(id=pedido_id)
+
     if request.method == 'POST':
         form = Crear_Pedido_forms(request.POST)
 
@@ -490,6 +503,7 @@ def actualizar_pedido(request, pedido_id):
             return render(request, 'App/index.html')
 
     else:
+        # Inicializar el formulario con los datos del pedido existente
         form = Crear_Pedido_forms(initial={
             'mesa': pedido.mesa,
             'plato_principal': pedido.plato_principal,
@@ -505,7 +519,10 @@ def actualizar_pedido(request, pedido_id):
             'entregado': pedido.entregado
         })
 
-    return render(request, 'App/Actualizar_Pedido.html', {'form': Crear_Pedido_forms})
+
+    return render(request, 'App/Actualizar_Pedido.html', {'form': form})
+
+
 def actualizar_mesa(request, id):
     mesa = Mesa.objects.get(id=id)
     if request.method == 'POST':
@@ -635,3 +652,155 @@ def eliminar_postre(request, postre_id):
     context = {'postre': postre}
 
     return render(request, 'App/index.html', context=context)
+
+
+def registro_usuario(request):
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'¡Registro Exitoso! Bienvenido/a.')
+            return render(request,'App/index.html')
+    else:
+        form = UserRegisterForm()
+    return render(request, 'App/registro.html', {'form': form})
+
+def login_request(request):
+
+    if request.method == "POST":
+            form = AuthenticationForm(request, data = request.POST)
+
+            if form.is_valid():
+                usuario = form.cleaned_data.get('username')
+                contra = form.cleaned_data.get('password')
+
+                user = authenticate(username=usuario, password=contra)
+
+                if user is not None:
+                        login(request, user)
+
+                        return render(request,"App/index.html", {"mensaje":f"Bienvenido {usuario}"})
+        
+                else:
+                        return render(request, "App/index.html", {"mensaje":"Error, datos incorrectos"})
+
+            else:
+                return render(request,"App/index.html", {"mensaje": "Error, formulario erroneo"})
+
+    form = AuthenticationForm()
+
+    return render(request, "App/login.html", {"form": form})
+
+def logout_request(request):
+    logout(request)
+    return render(request, 'App/index.html', {"mensaje":"Sesión cerrada correctamente"})
+
+def mostrar_pedidos_cliente(request):
+
+    pedidos_cliente = Pedido_Cliente.objects.all()
+
+    context = {'pedido_cliente': pedidos_cliente}
+
+    return render(request, 'App/Pedido_Cliente.html', context)
+
+
+def crear_pedido_cliente(request):
+    if request.method == 'POST':
+        form = Crear_Pedido_Cliente_Forms(request.POST)
+        if form.is_valid():
+            formulario_limpio = form.cleaned_data
+            pedido_cliente = Pedido_Cliente(
+                mesa=formulario_limpio['mesa'],
+                plato_principal=formulario_limpio['plato_principal'],
+                adicional_plato_principal=formulario_limpio['adicional_plato_principal'],
+                guarnicion=formulario_limpio['guarnicion'],
+                adicional_guarnicion=formulario_limpio['adicional_guarnicion'],
+                bebida=formulario_limpio['bebida'],
+                adicional_bebida=formulario_limpio['adicional_bebida'],
+                postre=formulario_limpio['postre'],
+                adicional_postre=formulario_limpio['adicional_postre'],
+                cafe_te=formulario_limpio['cafe_te'],
+                adicional_cafe_te=formulario_limpio['adicional_cafe_te'],
+            )
+            pedido_cliente.save()
+            
+            return render (request,'App/index.html')
+    else:
+        form = Crear_Pedido_Cliente_Forms()
+    
+    return render(request, 'App/Crear_Pedido_Cliente.html', {'form': Crear_Pedido_Cliente_Forms})
+
+
+def politica_privacidad(request):
+    return render(request, 'App/Politica_Privacidad.html')
+
+def terminos_condiciones(request):
+    return render(request, 'App/Terminos_Condiciones.html')
+
+
+def contacto(request):
+    if request.method == 'POST':
+        nombre = request.POST.get('nombre')
+        email = request.POST.get('email')
+        mensaje = request.POST.get('mensaje')
+        asunto = request.POST.get('asunto')
+
+        if nombre and email and mensaje:
+            template = render_to_string('App/Email-Template.html', {
+                'nombre': nombre,
+                'email': email,
+                'mensaje': mensaje,
+                'asunto': asunto
+            })
+            emailsender = EmailMessage(
+                asunto,
+                template,
+                settings.EMAIL_HOST_USER,
+                to=['french.restaurante@gmail.com'],
+            )
+            emailsender.content_subtype = 'html'
+            emailsender.fail_silently = False
+
+            try:
+                emailsender.send()
+                MensajeContacto.objects.create(
+                    nombre=nombre,
+                    email=email,
+                    mensaje=mensaje,
+                )
+                send_mail(
+                    'Gracias Por tu Opinión',
+                    f'Hola {nombre}, hemos recibido tu mensaje y te contactaremos pronto.',
+                    settings.DEFAULT_FROM_EMAIL,
+                    [email]
+                )
+                messages.success(request, 'Mensaje enviado exitosamente.')
+                return redirect('pagina_de_gracias')
+            except Exception as e:
+                messages.error(request, f'Error al enviar el mensaje: {str(e)}')
+                return render(request, 'App/Contacto.html')
+
+        else:
+            messages.error(request, 'Por favor, llene todos los campos.')
+
+    return render(request, 'App/Contacto.html')
+
+def pagina_de_gracias(request):
+    return render(request, 'App/Gracias.html')
+
+def pagina_de_gracias(request):
+    return render(request, 'App/Gracias.html')
+
+@admin.register(MensajeContacto)
+class MensajeContactoAdmin(admin.ModelAdmin):
+    list_display = ('nombre', 'email', 'fecha_envio')
+    search_fields = ('nombre', 'email')
+
+def listar_mensajes(request):
+    mensajes = MensajeContacto.objects.all().order_by('-fecha_envio')
+    paginator = Paginator(mensajes, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'App/Listar_Mensajes.html', {'page_obj': page_obj})
+

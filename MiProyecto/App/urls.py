@@ -13,7 +13,6 @@ urlpatterns = [
     path('adicionales/', views.mostrar_adicional, name='Adicional'),
     path('mesas/', views.mostrar_mesas, name='Mesa'),
     path('postres/', views.mostrar_postres, name='Postre'),
-    path('crear_bebidas/', views.crear_bebida, name='Crear Bebida'),
     path('crear_comida/',  views.crear_comida, name='Crear Comida'),
     path('crear_categoria/', views.crear_categoria, name='Crear Categoria'),
     path('crear_adicional/', views.crear_adicional, name='Crear Adicional'),
@@ -59,6 +58,7 @@ urlpatterns = [
     path('contacto/',views.contacto,name='Contacto'),
     path('gracias/',views.pagina_de_gracias,name='pagina_de_gracias'),
     path('mensajes/', views.listar_mensajes,name='Listar Mensajes'),
+    path('about/', views.mostrar_about, name='About'),
 
 
 ]

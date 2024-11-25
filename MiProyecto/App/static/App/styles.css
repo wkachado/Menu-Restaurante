@@ -1,138 +1,113 @@
-/* Contenedor del formulario */
-.form-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start; /* Mover todo a la izquierda */
-    min-height: 100vh;
-    background: rgba(20, 20, 20, 0.9); /* Fondo oscuro */
-    animation: gradient-bg 10s ease-in-out infinite, pulse-background 6s infinite alternate;
-    padding-left: 20px; /* Agregar algo de espacio a la izquierda */
-}
-
-/* Animación para el fondo */
-@keyframes gradient-bg {
-    0% {
-        background: rgba(20, 20, 20, 0.9);
-    }
-    50% {
-        background: rgba(30, 30, 30, 0.9);
-    }
-    100% {
-        background: rgba(20, 20, 20, 0.9);
-    }
-}
-
-/* Pulsación de fondo */
-@keyframes pulse-background {
-    0% {
-        box-shadow: 0 0 30px rgba(255, 0, 255, 0.6), 0 0 60px rgb(161, 2, 253);
-    }
-    50% {
-        box-shadow: 0 0 60px rgba(255, 0, 255, 0.8), 0 0 120px rgba(57, 1, 83, 0.8);
-    }
-    100% {
-        box-shadow: 0 0 30px rgba(255, 0, 255, 0.6), 0 0 60px rgba(116, 0, 151, 0.6);
-    }
-}
-
-/* Estilos para el formulario */
+/* Contenedor principal del formulario con bordes redondeados y gradiente animado */
 .form-container .container {
     width: 100%;
     max-width: 350px;
-    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro con transparencia */
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: linear-gradient(45deg, rgba(0, 81, 255, 0.8), rgba(0, 255, 255, 0.8)); /* Gradiente entre azul fuerte y cian */
+    border: 2px solid rgba(0, 204, 255, 0.8);
     border-radius: 20px;
     padding: 20px;
-    backdrop-filter: blur(15px);
-    box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 15px rgba(0, 204, 255, 0.6);
     text-align: center;
-    animation: bounce 2s ease-in-out infinite, shadow-glow 4s ease-in-out infinite, drop 1s ease-in-out forwards; /* Añadir efecto de caída */
+    color: #fff; /* Texto en blanco para mayor contraste */
+    animation: gradientMovement 4s infinite linear; /* Animación para mover el gradiente */
 }
 
-/* Animación de rebote */
-@keyframes bounce {
+/* Animación para el movimiento del gradiente */
+@keyframes gradientMovement {
     0% {
-        transform: translateY(0);
+        background: linear-gradient(45deg, rgba(0, 81, 255, 0.8), rgba(0, 255, 255, 0.8));
     }
     50% {
-        transform: translateY(-10px);
+        background: linear-gradient(135deg, rgba(0, 255, 255, 0.8), rgba(0, 81, 255, 0.8));
     }
     100% {
-        transform: translateY(0);
+        background: linear-gradient(45deg, rgba(0, 81, 255, 0.8), rgba(0, 255, 255, 0.8));
     }
 }
 
-/* Efecto de caída */
-@keyframes drop {
-    0% {
-        transform: translateY(-50px);
-        opacity: 0;
-    }
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-/* Resplandor de sombra */
-@keyframes shadow-glow {
-    0% {
-        box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-    }
-    50% {
-        box-shadow: 0 0 50px rgba(0, 204, 255, 0.6);
-    }
-    100% {
-        box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-    }
-}
-
-.form-container .magic-button {
+/* Estilo para los campos de entrada con bordes y colores de gradiente */
+.form-container input[type="text"],
+.form-container input[type="password"],
+.form-container input[type="email"] {
     width: 100%;
-    padding: 15px;
-    border: none;
-    border-radius: 50px;
-    font-size: 18px;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid rgba(0, 204, 255, 0.8);
+    border-radius: 10px;
+    font-size: 16px;
+    background-color: rgba(0, 81, 255, 0.6); /* Fondo azul claro semitransparente */
+    color: rgb(0, 0, 0); /* Texto blanco en los campos */
+    transition: all 0.3s ease;
+}
+
+/* Efecto al enfocar los campos de entrada */
+.form-container input[type="text"]:focus,
+.form-container input[type="password"]:focus,
+.form-container input[type="email"]:focus {
+    border-color: rgba(0, 255, 255, 0.8); /* Borde cian al enfocar */
+    background-color: rgba(0, 255, 255, 0.3); /* Fondo más claro cuando se enfoca */
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.8); /* Sombra cian */
+    outline: none;
+}
+
+/* Estilo para el botón con gradiente animado */
+.button {
+    display: inline-block;
+    padding: 12px 30px;
+    background: linear-gradient(45deg, rgba(0, 81, 255, 0.8), rgba(0, 255, 255, 0.8));
+    border: 2px solid rgba(0, 204, 255, 0.8);
+    border-radius: 25px;
+    font-size: 16px;
+    color: #ffffff; /* Texto blanco */
     font-weight: bold;
-    cursor: pointer;
-    color: #00ffff; /* Color del texto en cian */
-    background-color: #000; /* Fondo negro */
-    transition: all 0.4s ease;
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.6), 0 0 30px rgba(0, 255, 255, 0.6); /* Sombra de neón en cian */
-    text-transform: uppercase;
     text-align: center;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 204, 255, 0.6), 0 0 20px rgba(0, 255, 255, 0.6);
+    transition: all 0.3s ease;
+    animation: pulseButton 2s infinite; /* Pulsación suave */
 }
 
-/* Efecto hover del botón mágico */
-.form-container .magic-button:hover {
-    transform: scale(1.1) rotate(3deg);
-    box-shadow: 0 0 50px rgba(0, 255, 255, 1), 0 0 100px rgba(0, 255, 255, 1); /* Sombra más intensa en cian al pasar el mouse */
-}
-
-/* Animación de resplandor */
-@keyframes magic-glow {
+/* Animación de pulsación para el botón */
+@keyframes pulseButton {
     0% {
-        box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+        transform: scale(1);
     }
     50% {
-        box-shadow: 0 0 40px rgba(0, 255, 255, 1);
+        transform: scale(1.1);
     }
     100% {
-        box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+        transform: scale(1);
     }
 }
 
-/* Aplicar la animación de resplandor */
-.form-container .magic-button {
-    animation: magic-glow 1.5s ease-in-out infinite; /* Añadir animación de resplandor */
+/* Efecto hover para el botón */
+.button:hover {
+    background: linear-gradient(45deg, rgba(0, 255, 255, 0.8), rgba(0, 81, 255, 0.8)); /* Cambio de gradiente */
+    box-shadow: 0 10px 20px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 81, 255, 0.8);
+    transform: translateY(-5px); /* Levantamiento del botón al hacer hover */
 }
+
+/* Estilo para los enlaces dentro del formulario */
+.form-container a {
+    color: rgba(0, 255, 255, 0.8); /* Enlace en cian */
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+/* Efecto al pasar el ratón sobre los enlaces */
+.form-container a:hover {
+    color: rgba(0, 81, 255, 0.8); /* Enlace azul fuerte al pasar el ratón */
+    text-decoration: underline;
+}
+
+
 
 
 /* Estilos para el Banner */
 .banner {
     text-align: center;
-    background: #1a1a1a; /* Fondo oscuro */
+    background: #000000; /* Fondo oscuro */
     padding: 20px;
     color: #00ffff; /* Color del texto en cian */
     text-shadow: 2px 2px 10px #000000; /* Sombra oscura */
@@ -149,9 +124,9 @@
 }
 
 @keyframes sparkle {
-    0% { text-shadow: 0px 0px 15px #00ffff, 0px 0px 30px #00cccc, 0px 0px 45px #00ffcc; }
-    50% { text-shadow: 0px 0px 25px #00cccc, 0px 0px 50px #00ffcc, 0px 0px 70px #00ffff; }
-    100% { text-shadow: 0px 0px 15px #00ffff, 0px 0px 30px #00cccc, 0px 0px 45px #00ffcc; }
+    0% { text-shadow: 0px 0px 15px  #000080, 0px 0px 30px  #000080, 0px 0px 45px  #000080; }
+    50% { text-shadow: 0px 0px 25px  #000080, 0px 0px 50px #000080, 0px 0px 70px  #000080; }
+    100% { text-shadow: 0px 0px 15px  #000080, 0px 0px 30px  #000080, 0px 0px 45px   #000080; }
 }
 
 @keyframes pulse {
@@ -161,9 +136,9 @@
 
 /* Nueva animación de fondo */
 @keyframes background-animation {
-    0% { background: #1a1a1a; }
-    50% { background: #2a2a2a; }
-    100% { background: #1a1a1a; }
+    0% { background: #000000; }
+    50% { background: #000000; }
+    100% { background: #000000; }
 }
 
 /* Efecto de flotación para el texto */
@@ -173,112 +148,87 @@
     100% { transform: translateY(0); }
 }
 
-/* Navbar principal con efecto de fondo oscuro */
+
+/* Navbar principal con fondo oscuro, bordes redondeados y ajuste completo del fondo */
 .navbar {
-    background: #1a1a1a; /* Fondo oscuro */
-    padding: 15px;
-    border-radius: 15px;
-    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.7);
-    transition: transform 0.3s ease-in-out;
+    background: #000000 !important; /* Fondo negro */
+    padding: 10px 15px !important; /* Reducir padding para más espacio */
+    border-radius: 30px !important; /* Bordes redondeados más pronunciados */
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5) !important; /* Sombra intensa */
+    transition: all 0.3s ease !important;
+    width: 100%; /* Asegura que el navbar ocupe todo el ancho */
+    box-sizing: border-box; /* Incluye el padding y border dentro del tamaño total */
+    overflow: hidden; /* Esto asegura que todo el contenido quede dentro de los bordes */
 }
 
-/* Enlaces en la navbar con estilo mágico */
+/* Enlaces en la navbar */
 .navbar-nav .nav-link {
-    color: #f0f8f8; /* Color del texto en cian */
-    font-size: 1em;
-    margin: 0 10px;
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-weight: bold;
-    position: relative;
-    background: linear-gradient(90deg, rgba(0, 255, 255, 0.3), rgba(3, 3, 3, 0.3));
-    box-shadow: 0px 0px 10px #00ffff, 0px 0px 20px #00cccc;
-    transition: all 0.3s ease;
-    overflow: hidden;
+    color: #ffffff !important; /* Color blanco para los enlaces */
+    font-size: 0.9em !important; /* Reducir tamaño de letra */
+    margin: 0 5px !important; /* Reducir margen entre los enlaces */
+    padding: 8px 12px !important; /* Reducir padding para más espacio */
+    border-radius: 25px !important; /* Bordes redondeados */
+    font-weight: bold !important;
+    position: relative !important;
+    background: transparent !important; /* Fondo transparente por defecto */
+    box-shadow: none !important; /* Sin sombra al inicio */
+    transition: all 0.3s ease !important;
+    overflow: hidden !important;
+    white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
 }
 
-/* Efecto de brillo en el enlace al hacer hover */
+/* Efecto de brillo en los enlaces al hacer hover */
 .navbar-nav .nav-link::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 200%;
-    height: 100%;
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
-    transition: all 0.3s ease;
-    transform: skewX(-20deg);
-    z-index: -1;
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: -100% !important;
+    width: 200% !important;
+    height: 100% !important;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0)) !important;
+    transition: all 0.3s ease !important;
+    transform: skewX(-20deg) !important;
+    z-index: -1 !important;
 }
 
 /* Movimiento de brillo al hacer hover */
 .navbar-nav .nav-link:hover::before {
-    left: 100%;
-    transition: all 0.5s ease;
+    left: 100% !important;
+    transition: all 0.5s ease !important;
 }
 
-/* Cambio de color y sombra al hacer hover */
+/* Estilo de los enlaces al hacer hover */
 .navbar-nav .nav-link:hover {
-    color: #ffffff; /* Color del texto en blanco */
-    background: rgba(10, 10, 10, 0.3); /* Fondo en cian claro */
-    transform: scale(1.1);
-    box-shadow: 0px 0px 15px #141414, 0px 0px 25px #0c0c0c; /* Efecto de brillo en cian */
+    color: #ffffff !important;
+    background: linear-gradient(90deg, rgba(0, 255, 136, 0.6), rgba(0, 204, 255, 0.8)) !important; /* Fondo degradado al hacer hover */
+    transform: scale(1.1) !important;
+    box-shadow: 0px 0px 15px rgba(0, 255, 136, 0.6), 0px 0px 25px rgba(0, 204, 255, 0.8) !important; /* Efecto de brillo */
 }
 
 /* Efecto de hover en la navbar completa */
 .navbar:hover {
-    transform: scale(1.02);
-    box-shadow: 0px 10px 25px rgba(0, 255, 255, 0.7), 0px 5px 20px rgba(0, 255, 255, 0.5);
+    transform: scale(1.02) !important;
+    box-shadow: 0px 10px 25px rgba(0, 255, 136, 0.6), 0px 5px 20px rgba(0, 204, 255, 0.8) !important;
 }
 
-
-/* Testimonio con animación Neón */
-.testimonio {
-    text-align: center;
-    font-style: italic;
-    margin: 20px 0;
-    background-color: #1a1a1a; /* Fondo negro oscuro */
-    padding: 15px;
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 4px 8px #00ffff; /* Sombra en cian para efecto neón */
-    color: #ffffff; /* Color del texto en blanco */
-    animation: fadeIn 1s ease-in-out, moveTestimonio 5s ease-in-out infinite; /* Animación para que aparezca y movimiento */
+/* Asegurarse que el contenido del navbar se ajuste correctamente */
+.navbar-nav {
+    display: flex;
+    justify-content: space-evenly; /* Distribuir el espacio entre los elementos de manera uniforme */
+    align-items: center; /* Centrar los enlaces verticalmente */
+    width: 100%; /* Asegura que ocupe todo el ancho */
+    flex-wrap: nowrap; /* Evita que los elementos se acomoden en varias líneas */
 }
 
-/* Animación de desvanecimiento */
-@keyframes fadeIn {
-    0% {
-        opacity: 0; /* Comienza invisible */
-    }
-    100% {
-        opacity: 1; /* Termina visible */
+/* Opcional: Si se requiere que el navbar sea más compacto en pantallas pequeñas */
+@media (max-width: 768px) {
+    .navbar-nav {
+        flex-direction: row; /* Asegura que los elementos estén en una fila */
+        flex-wrap: wrap; /* Deja que los elementos se acomoden cuando no haya suficiente espacio */
+        justify-content: space-between; /* Asegura que los elementos se distribuyan correctamente */
     }
 }
 
-/* Movimiento de testimonio */
-@keyframes moveTestimonio {
-    0% {
-        transform: translateY(-10px); /* Movimiento hacia arriba */
-    }
-    50% {
-        transform: translateY(10px); /* Desplazamiento hacia abajo */
-    }
-    100% {
-        transform: translateY(-10px); /* Vuelve a la posición inicial */
-    }
-}
-/* Movimiento de testimonio */
-@keyframes moveTestimonio {
-    0% {
-        transform: translateX(-20px); /* Comienza desplazándose desde la izquierda */
-    }
-    50% {
-        transform: translateX(20px); /* Se desplaza hacia la derecha */
-    }
-    100% {
-        transform: translateX(-20px); /* Vuelve a la posición inicial */
-    }
-}
 
 
 /*recuadro en las imagenes */
@@ -302,107 +252,219 @@
 }
 
 
+/* Testimonio con animación de degradado dinámico, neón y zoom */
+.testimonio {
+    text-align: center;
+    font-style: italic;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 12px; /* Bordes más suaves */
+    background: linear-gradient(90deg, rgba(0, 0, 128, 1), rgba(0, 204, 255, 0.8)); /* Degradado inicial */
+    color: white; /* Color del texto en blanco */
+    text-shadow: 0 0 10px rgba(0, 0, 128, 1); /* Efecto de brillo suave en el texto */
+    box-shadow: 0 8px 16px rgba(0, 0, 128, 1), 0 0 15px rgba(0, 204, 255, 0.5); /* Sombra con efecto neón */
+    animation: glowTestimonio 4s ease-in-out infinite, moveTestimonio 8s ease-in-out infinite; /* Animaciones combinadas */
+    transition: transform 0.3s ease-in-out; /* Suaviza las transiciones al interactuar */
+}
 
-/* Animación para cambiar el color de fondo de los testimonios */
-@keyframes colorChangeTestimonio {
+/* Animación para el brillo dinámico */
+@keyframes glowTestimonio {
     0% {
-        background-color: rgb(0, 248, 227);
+        box-shadow: 0 8px 16px rgba(0, 0, 128, 1), 0 0 15px rgba(0, 204, 255, 0.5);
+        background: linear-gradient(90deg, rgba(0, 0, 128, 1), rgba(0, 204, 255, 0.8));
     }
     50% {
-        background-color: rgb(225, 0, 255);
+        box-shadow: 0 12px 24px rgba(0, 204, 255, 0.8), 0 0 30px rgba(0, 0, 128, 1);
+        background: linear-gradient(90deg, rgba(0, 204, 255, 0.8),rgba(0, 0, 128, 1)); /* Invertimos el gradiente */
     }
     100% {
-        background-color: rgb(132, 0, 255);
+        box-shadow: 0 8px 16px rgba(0, 0, 128, 1), 0 0 15px rgba(0, 204, 255, 0.5);
+        background: linear-gradient(90deg, rgba(0, 0, 128, 1), rgba(0, 204, 255, 0.8));
     }
 }
 
-/* Animación de desvanecimiento para testimonio */
-@keyframes fadeIn {
+/* Movimiento de testimonio */
+@keyframes moveTestimonio {
     0% {
-        opacity: 0;
+        transform: translateY(-10px); /* Movimiento hacia arriba */
+    }
+    50% {
+        transform: translateY(10px); /* Movimiento hacia abajo */
     }
     100% {
-        opacity: 1;
+        transform: translateY(-10px); /* Vuelve a la posición inicial */
     }
 }
 
-/* Efecto Neón en las tarjetas (card) */
-.card {
-    background: #000000; /* Fondo negro */
-    color: #ffffff; /* Color del texto en blanco */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff; /* Sombra en cian para efecto neón */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* Hover para un efecto interactivo */
+.testimonio:hover {
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño */
+    transition: transform 0.3s ease-in-out;
 }
 
-/* Efecto en los pasos */
-.paso {
-    padding: 20px;
-    border-radius: 10px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background-color: #1a1a1a; /* Fondo negro oscuro */
-    box-shadow: 0 0 10px #00ffff; /* Sombra en cian */
-}
 
-.paso:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px #00ffff; /* Efecto de brillo en cian al hacer hover */
-}
 
-/* Oferta con animación en neón */
+/* Oferta con animación de degradado dinámico y neón */
 .oferta {
     text-align: center;
     font-weight: bold;
-    background-color: #000000; /* Color de fondo negro */
     padding: 20px;
     margin: 20px 0;
-    border-radius: 8px; /* Bordes más suaves */
-    color: #ffffff; /* Color del texto en blanco */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
-    animation: moveOferta 8s ease-in-out infinite; /* Movimiento más lento */
+    border-radius: 12px; /* Bordes más suaves */
+    background: linear-gradient(90deg, rgba(0, 0, 128, 1), rgba(0, 204, 255, 0.8)); /* Degradado inicial */
+    color: white; /* Color del texto en blanco */
+    text-shadow: 0 0 10px rgba(0, 0, 128, 1); /* Efecto de brillo suave en el texto */
+    box-shadow: 0 8px 16px rgba(0, 0, 128, 1), 0 0 15px rgba(0, 204, 255, 0.5); /* Sombra con efecto neón */
+    animation: glowOferta 4s ease-in-out infinite, moveOferta 8s ease-in-out infinite; /* Animaciones combinadas */
+}
+
+/* Animación para el brillo dinámico */
+@keyframes glowOferta {
+    0% {
+        box-shadow: 0 8px 16px rgba(0, 0, 128, 1), 0 0 15px rgba(0, 204, 255, 0.5);
+        background: linear-gradient(90deg, rgba(0, 0, 128, 1),rgba(0, 204, 255, 0.8));
+    }
+    50% {
+        box-shadow: 0 12px 24px rgba(0, 204, 255, 0.8), 0 0 30px rgba(0, 0, 128, 1);
+        background: linear-gradient(90deg, rgba(0, 204, 255, 0.8),rgba(0, 0, 128, 1)); /* Invertimos el gradiente */
+    }
+    100% {
+        box-shadow: 0 8px 16px rgba(0, 0, 128, 1), 0 0 15px rgba(0, 204, 255, 0.5);
+        background: linear-gradient(90deg, rgba(0, 0, 128, 1), rgba(0, 204, 255, 0.8));
+    }
 }
 
 /* Movimiento de oferta */
 @keyframes moveOferta {
     0% {
-        transform: translateY(-15px); /* Movimiento más suave */
+        transform: translateY(-10px); /* Movimiento hacia arriba */
     }
     50% {
-        transform: translateY(15px); /* Desplazamiento hacia abajo */
+        transform: translateY(10px); /* Movimiento hacia abajo */
     }
     100% {
-        transform: translateY(-15px); /* Vuelve a la posición inicial */
+        transform: translateY(-10px); /* Vuelve a la posición inicial */
     }
 }
 
+/* Hover para un efecto interactivo */
+.oferta:hover {
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño */
+    transition: transform 0.3s ease-in-out;
+}
+
+
+/* Estilos para la sección de Formas de Pago */
+.forma-de-pago {
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para las tarjetas de preguntas frecuentes */
+.card {
+    background-color: rgba(0, 0, 128, 1); /* Color inicial */
+    transition: background-color 0.5s ease; /* Transición suave para el cambio de color */
+    color: white; /* Texto blanco en las tarjetas */
+}
+
+/* Cambiar el color al pasar el mouse */
+.card:hover {
+    background-color: rgba(0, 0, 15, 0.5); /* Color al pasar el mouse */
+}
+
+/* Estilos para el fondo de las tarjetas */
+.paso {
+    background: linear-gradient(270deg, rgba(0, 123, 255, 0.8), rgba(0, 0, 128, 1), rgb(0, 129, 119));
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    border-radius: 8px;
+    color: white; /* Texto blanco en las tarjetas con clase "paso" */
+}
+
+/* Animación del fondo */
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Estilos para la sección de Preguntas Frecuentes */
+.faq {
+    margin-top: 40px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #000000; /* Fondo negro para la FAQ */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: white; /* Texto blanco en la sección FAQ */
+}
+
+/* Estilos para los botones de las preguntas */
+.btn-link {
+    color: #ffffff; /* Texto blanco para los botones */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-link:hover {
+    color: #ffffff; /* Color blanco al pasar el ratón */
+}
+
+/* Estilos para los encabezados y párrafos dentro de la FAQ */
+.faq h2,
+.faq p {
+    color: white; /* Asegurarse de que los encabezados y párrafos sean blancos */
+}
+
+/* Estilos para los botones de las preguntas */
+.btn-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-link:hover {
+    color: #ffffff; /* Color más oscuro al pasar el ratón */
+}
+
+
+
 /* Estilo general del footer */
 footer {
-    background: rgba(20, 20, 20, 0.9); /* Fondo oscuro */
+    background: rgba(0, 0, 0, 0.9);
     color: #ffffff;
     padding: 30px 20px;
     text-align: center;
     font-family: 'Comic Sans MS', cursive, sans-serif;
     position: relative;
     border-top: 3px solid transparent;
-    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.5); /* Sombra más pronunciada */
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     margin: 0 auto;
     border: 3px solid transparent;
-    animation: glow 1.5s infinite alternate;
+    background-image: linear-gradient(rgb(3, 3, 3), rgb(0, 0, 0)),
+                    radial-gradient(circle, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8));
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    animation: rgbGlow 5s infinite alternate; /* Duración más lenta */
 }
 
 /* Título del footer */
 footer h5 {
     font-size: 1.8em;
     font-weight: bold;
-    color: #00ffff; /* Color neón */
+    color: #fff;
     margin-bottom: 15px;
     text-transform: uppercase;
     letter-spacing: 3px;
     animation: bounceIn 2s ease-out;
     text-align: center; /* Centrado del título */
-    text-shadow: 0 0 10px rgba(0, 255, 255, 0.8), 0 0 20px rgba(0, 255, 255, 0.6); /* Efecto de resplandor */
 }
 
 /* Centrar las columnas */
@@ -428,20 +490,19 @@ footer ul li {
 }
 
 footer ul li a {
-    color: #00ffff; /* Color neón */
+    color: #fff;
     font-size: 1.1em;
     text-decoration: none;
     padding: 5px;
     transition: all 0.3s ease;
     border-bottom: 2px solid transparent;
-    text-shadow: 0 0 5px rgba(0, 255, 255, 0.5); /* Efecto de resplandor */
 }
 
 footer ul li a:hover {
-    color: #f0f0f0;
-    border-bottom: 2px solid #f0f0f0;
+    color: #000000;
+    border-bottom: 2px solid #000000;
     transform: scale(1.05);
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.7);
 }
 
 /* Texto adicional en el footer */
@@ -468,19 +529,35 @@ footer .footer-link {
 }
 
 footer .footer-link:hover {
-    background-color: rgb(0, 238, 255); /* Fondo más claro al pasar el mouse */
-    color: #0074e9; /* Color del texto al pasar el mouse */
+    background-color: rgb(255, 255, 255); /* Fondo más claro al pasar el mouse */
+    color: #00ccff; /* Color del texto al pasar el mouse */
     transform: scale(1.1); /* Aumento más notable */
     box-shadow: 0px 8px 20px rgba(30, 255, 0, 0.2); /* Sombra más pronunciada */
 }
 
-/* Efecto de resplandor para el contorno */
-@keyframes glow {
+/* Efecto RGB Glow para el contorno */
+@keyframes rgbGlow {
     0% {
+        border-color:rgba(0, 0, 128, 1);
+
+        box-shadow: 0 0 10px rgba(0, 0, 128, 1);
+    }
+    25% {
+        border-color: rgba(0, 255, 255, 1);
         box-shadow: 0 0 10px rgba(0, 255, 255, 0.75);
     }
+    50% {
+        border-color: rgb(0, 255, 170);
+        box-shadow: 0 0 10px rgba(0, 255, 128, 0.75);
+    }
+    75% {
+        border-color: rgb(0, 81, 255);
+        box-shadow: 0 0 10px rgba(0, 102, 255, 0.75);
+    }
     100% {
-        box-shadow: 0 0 20px rgba(0 , 255, 255,  1);
+        border-color: rgba(0, 0, 128, 1);
+        box-shadow: 0 0 10px rgba(0, 0, 128, 1);
+
     }
 }
 
@@ -495,7 +572,7 @@ footer .footer-link:hover {
     color: white;
     font-size: 24px;
     border: 2px solid transparent;
-    animation: glow 3s infinite alternate;
+    animation: rgbGlow 6s infinite alternate; /* Duración ajustada a 6s */
     transition: transform 0.3s ease;
 }
 
@@ -520,357 +597,258 @@ footer .footer-link:hover {
     background: radial-gradient(circle at 30% 30%, #feda77, #d62976, #4f5bd5);
 }
 
-/* Estilo base para ambas tablas */
-.table {
-    margin-top: 40px;
-    margin-bottom: 40px;
-    border-radius: 16px;
-    background: linear-gradient(135deg, rgba(80, 24, 126, 0.8), rgba(18, 10, 43, 0.8));
-    color: #fff;
-    padding: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 8px 15px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
-
-.table:hover {
-    transform: scale(1.02); /* Efecto de zoom suave */
-    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.7), 0 10px 20px rgba(0, 0, 0, 0.5);
-}
-
-/* Cabecera de la tabla con un gradiente futurista */
-.table th {
-    background: linear-gradient(45deg, #6c00ff, #ff00d4); /* Violeta y rosa neón */
-    color: white;
-    font-size: 0.95rem; /* Tamaño de fuente reducido */
-    text-align: center;
-    padding: 12px;
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
-}
-
-/* Estilo para las celdas de la tabla */
-.table td {
-    background: rgba(35, 17, 48, 0.85);
-    color: #ddd;
-    padding: 12px; /* Reducido */
-    text-align: center;
-    font-size: 0.9rem; /* Tamaño de fuente reducido */
-    border: 1px solid #5f1e91;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-}
-
-.table td:hover {
-    background-color: rgba(103, 56, 145, 0.8); /* Morado suave */
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
-    color: #fff;
-    transform: scale(1.05);
-}
-
-/* Estilo para filas alternas */
-.table tbody tr:nth-child(odd) {
-    background: rgba(40, 25, 80, 0.85); /* Violeta oscuro */
-}
-
-.table tbody tr:nth-child(even) {
-    background: rgba(50, 32, 85, 0.85); /* Otro tono oscuro de violeta */
-}
-
-/* Efecto hover en las filas */
-.table tbody tr:hover {
-    background: rgba(103, 56, 145, 0.9); /* Violeta intenso */
-    cursor: pointer;
-    transform: translateY(-4px); /* Efecto de elevación */
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
-}
-
-/* Cabecera de la tabla secundaria (segunda tabla) */
-.table-secondary {
-    background: linear-gradient(135deg, #ff004d, #ff0080); /* Rosa y violeta brillante */
-    color: white;
-    font-size: 0.9rem; /* Tamaño de fuente reducido */
-    padding: 12px; /* Reducido */
-    text-align: center;
-    border-radius: 12px;
-    text-transform: capitalize;
-    box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.6);
-}
-
-/* Personalización del borde de la tabla */
-.table {
-    border: 2px solid rgba(103, 56, 145, 0.8); /* Borde neón */
-}
-
-/* Efecto de transición suave para las celdas */
-.table td {
-    transition: background-color 0.4s ease, transform 0.2s ease;
-}
-
-/* Celdas con texto 'N/A' */
-.table td.NA {
-    color: #bbb;
-    font-style: italic;
-    background-color: rgba(50, 32, 85, 0.7);
-}
-
-/* Agregar bordes redondeados en la tabla */
-.table, .table td, .table th {
-    border-radius: 16px;
-}
-
-/* Efectos adicionales al pasar el mouse sobre celdas */
-.table td:hover {
-    background-color: rgba(103, 56, 145, 0.9);
-    color: #fff;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-}
-
-/* Estilo para las filas al pasar el mouse */
-.table tbody tr:hover {
-    background: rgba(100, 55, 150, 0.9); /* Violeta oscuro */
-    transform: translateY(-4px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-}
-
-/* Añadir brillo a la cabecera de la tabla */
-.table th:hover {
-    background: linear-gradient(45deg, #ff4f5a, #ff57a3);
-    box-shadow: 0 0 20px rgba(255, 0, 150, 0.6);
-}
 
 
-/* Estilos generales para los botones */
-.btn {
-    font-size: 0.9rem; /* Tamaño más pequeño para los botones */
-    padding: 8px 16px; /* Relleno más pequeño para botones compactos */
-    border-radius: 25px; /* Bordes redondeados, con un tamaño más marcado */
-    text-align: center;
-    display: inline-block;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    color: white;
-    background: transparent;
-    position: relative; /* Para los efectos de luz */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Sombra ligera para el efecto de profundidad */
-}
-
-/* Botón "Nuevo Pedido" */
-.btn-outline-success {
-    background: linear-gradient(45deg, #28a745, #218838); /* Verde brillante */
-    border: 2px solid transparent;
-    background-clip: padding-box;
-    color: white;
-    box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3); /* Sombra suave */
-}
-
-.btn-outline-success::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(40, 167, 69, 0.2); /* Efecto de luz de neón */
-    z-index: -1;
-    border-radius: 25px;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-}
-
-.btn-outline-success:hover {
-    background: linear-gradient(45deg, #34d058, #17b300); /* Verde claro */
-    box-shadow: 0 5px 20px rgba(40, 167, 69, 0.5); /* Aumento de sombra */
-    transform: translateY(-3px); /* Efecto de elevación */
-}
-
-.btn-outline-success:hover::before {
-    opacity: 1; /* Efecto de luz activa */
-}
-
-/* Botón "Buscar Pedido" */
-.btn-outline-light {
-    background: linear-gradient(45deg, #f8f9fa, #e2e6ea); /* Gris claro */
-    border: 2px solid transparent;
-    background-clip: padding-box;
-    color: #333;
-}
-
-.btn-outline-light::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(248, 249, 250, 0.3); /* Efecto de luz suave */
-    z-index: -1;
-    border-radius: 25px;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-}
-
-.btn-outline-light:hover {
-    background: linear-gradient(45deg, #ffffff, #d6d8db); /* Blanco a gris */
-    color: #495057;
-    box-shadow: 0 5px 20px rgba(248, 249, 250, 0.5); /* Aumento de sombra */
-    transform: translateY(-3px); /* Efecto de elevación */
-}
-
-.btn-outline-light:hover::before {
-    opacity: 1; /* Efecto de luz activa */
-}
-
-/* Botón "Actualizar Pedido" */
-.btn-outline-info {
-    background: linear-gradient(45deg, #17a2b8, #117a8b); /* Azul brillante */
-    border: 2px solid transparent;
-    background-clip: padding-box;
-    color: white;
-    box-shadow: 0 4px 10px rgba(23, 162, 184, 0.3); /* Sombra suave */
-}
-
-.btn-outline-info::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(23, 162, 184, 0.2); /* Efecto de luz de neón */
-    z-index: -1;
-    border-radius: 25px;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-}
-
-.btn-outline-info:hover {
-    background: linear-gradient(45deg, #20c997, #1e7e8c); /* Verde claro */
-    box-shadow: 0 5px 20px rgba(23, 162, 184, 0.5); /* Aumento de sombra */
-    transform: translateY(-3px); /* Efecto de elevación */
-}
-
-.btn-outline-info:hover::before {
-    opacity: 1; /* Efecto de luz activa */
-}
-
-/* Botón "Eliminar Pedido" */
-.btn-outline-danger {
-    background: linear-gradient(45deg, #dc3545, #b02a37); /* Rojo brillante */
-    border: 2px solid transparent;
-    background-clip: padding-box;
-    color: white;
-    box-shadow: 0 4px 10px rgba(220, 53, 69, 0.3); /* Sombra suave */
-}
-
-.btn-outline-danger::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(220, 53, 69, 0.2); /* Efecto de luz de neón */
-    z-index: -1;
-    border-radius: 25px;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-}
-
-.btn-outline-danger:hover {
-    background: linear-gradient(45deg, #e74c3c, #c0392b); /* Rojo oscuro */
-    box-shadow: 0 5px 20px rgba(220, 53, 69, 0.5); /* Aumento de sombra */
-    transform: translateY(-3px); /* Efecto de elevación */
-}
-
-.btn-outline-danger:hover::before {
-    opacity: 1; /* Efecto de luz activa */
-}
-
-/* Estilo de los enlaces dentro de los botones */
-.btn a {
-    color: inherit;
-    text-decoration: none;
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-    padding: 8px;
-    text-align: center;
-    transition: all 0.3s ease-in-out;
-}
-
-.btn a:hover {
-    color: white;
-    text-decoration: none;
-}
-
-/* Estilo de los botones al pasar el mouse */
-/* Efecto de elevación y sombra al pasar el mouse */
-.btn:hover {
-    transform: translateY(-3px); /* Efecto de elevación */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Sombra más profunda */
-}
-
-
-/* Estilos generales para el contenedor de contacto */
+/* Contenedor principal con efecto de brillo en movimiento */
 .contacto {
-    background-color: #1a1a1a; /* Fondo oscuro para resaltar el neón */
-    padding: 30px; /* Espaciado interno */
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5); /* Sombra de neón */
+    background-color: #000000; /* Fondo oscuro */
+    padding: 30px;
+    border-radius: 8px;
+    position: relative; /* Necesario para el pseudo-elemento */
+    overflow: hidden; /* Oculta el exceso del brillo */
+    z-index: 0; /* Asegura que el contenido esté por encima del pseudo-elemento */
 }
 
-/* Estilos para el título */
+/* Efecto animado de brillo para el borde */
+.contacto::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 300%;
+    height: 300%;
+    background: linear-gradient(120deg, transparent, #000080, transparent);
+    animation: desplazamientoBrillo 3s linear infinite;
+    z-index: -1; /* Detrás del contenido */
+    filter: blur(10px);
+}
+
+/* Animación de movimiento */
+@keyframes desplazamientoBrillo {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Título con un brillo continuo */
 .contacto h3 {
-    color: #00ffff; /* Color del texto neón */
-    text-shadow: 0 0 10px rgba(0, 255, 255, 0.8), 0 0 20px rgba(0, 255, 255, 0.6); /* Efecto de resplandor */
-    margin-bottom: 20px; /* Espaciado inferior */
+    color: #ffffff;
+    text-shadow: 0 0 5px #000080, 0 0 15px #000080, 0 0 30px #000080;
+    animation: brilloTitular 2s infinite alternate;
 }
 
-/* Estilos para las alertas de mensajes */
-.alert {
-    margin-top: 20px; /* Espaciado superior */
-    background-color: rgba(0, 255, 255, 0.1); /* Fondo suave */
-    border: 1px solid rgba(0, 255, 255, 0.5); /* Borde neón */
+/* Animación de brillo tenue */
+@keyframes brilloTitular {
+    0% {
+        text-shadow: 0 0 10px #000080, 0 0 20px #77fdc5, 0 0 40px#000080;
+    }
+    100% {
+        text-shadow: 0 0 5px #000080, 0 0 15px #77fdc5, 0 0 30px #000080;
+    }
 }
 
-/* Estilos para los campos del formulario */
-.form-group label {
-    font-weight: bold; /* Negrita para las etiquetas */
-    color: #00ffff; /* Color del texto de las etiquetas */
-    text-shadow: 0 0 5px rgba(0, 255, 255, 0.5); /* Efecto de resplandor */
-}
-
-/* Estilos para los inputs y textarea */
+/* Campos del formulario con borde animado */
 .form-control {
-    border-radius: 4px; /* Bordes redondeados */
-    border: 1px solid #00ffff; /* Borde neón */
-    background-color: #1a1a1a; /* Fondo oscuro */
-    color: #ffffff; /* Color del texto */
-    transition: border-color 0.3s, box-shadow 0.3s; /* Transición suave */
+    border: 2px solid transparent;
+    background: linear-gradient(#fffdfd, #ffffff) padding-box, linear-gradient(90deg, #000080, #77fdc5, #000080) border-box;
+    color: #050505;
+    border-radius: 4px;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.form-control:focus {
-    border-color: #00ffff; /* Color del borde al enfocar */
-    box-shadow: 0 0 5px rgba(0, 255, 255, 0.8); /* Sombra al enfocar */
-}
-
-/* Estilos para el botón */
+/* Botón con efecto de brillo */
 .btn-primary {
-    background-color: #00ffff; /* Color de fondo del botón */
-    border-color: #00ffff; /* Color del borde del botón */
-    color: #000000; /* Color del texto del botón */
-    transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s; /* Transición suave */
+    background: linear-gradient(90deg,#000080,#00ced1, #000080);
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: desplazamientoBrillo 2s linear infinite;
 }
 
 .btn-primary:hover {
-    background-color: #00cccc; /* Color de fondo al pasar el mouse */
-    border-color: #00cccc; /* Color del borde al pasar el mouse */
-    box-shadow: 0 0 20px rgba(0, 255, 255, 1); /* Efecto de resplandor al pasar el mouse */
+    background: linear-gradient(90deg, #000080,#77fdc5, #000080);
+    color: #000000;
+}
+
+/* Botón sin exceso de brillo en texto */
+.btn-primary span {
+    position: relative;
+    z-index: 2; /* Coloca el texto por encima del efecto */
+}
+
+
+/* Estilos para la sección "Sobre Nosotros" */
+.sobre-nosotros {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 30px;
+    background: linear-gradient(135deg, rgba(0, 123, 255, 0.7), rgba(40, 167, 69, 0.7)), url('{% static "App/imagenes/fondo-restaurante.jpg" %}');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    overflow: hidden;
+    animation: fadeIn 1s ease-out;
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+
+/* Estilo general para la sección "Sobre Nosotros" */
+.sobre-nosotros {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 30px;
+    background: linear-gradient(135deg, rgba(0, 153, 255, 0.7), rgba(0, 195, 255, 0.7)), url('{% static "App/imagenes/fondo-restaurante.jpg" %}');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    overflow: hidden;
+    animation: fadeIn 1s ease-out;
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Títulos principales */
+.sobre-nosotros h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Títulos secundarios */
+.sobre-nosotros h2 {
+    font-size: 2.5rem;
+    margin-top: 30px;
+    color: #ffe600; /* Amarillo brillante */
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+/* Títulos terciarios */
+.sobre-nosotros h3 {
+    font-size: 2rem;
+    margin-top: 20px;
+    color: #fbff00; /* Rojo oscuro */
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Párrafos */
+.sobre-nosotros p {
+    font-size: 1.1rem;
+    text-align: justify;
+    margin-bottom: 20px;
+    line-height: 1.8;
+    color: #f1f1f1;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Estilo de listas */
+.sobre-nosotros ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.sobre-nosotros ul li {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #f1f1f1;
+}
+
+.sobre-nosotros ul li::before {
+    content: '';
+    margin-right: 10px;
+    color: #ffe600;
+}
+
+/* Texto de agradecimiento */
+.sobre-nosotros strong {
+    color: #ffe600;
+    font-size: 1.2rem;
+    text-align: center;
+    display: block;
+    margin-top: 30px;
+}
+
+/* Efectos en los enlaces */
+.sobre-nosotros a {
+    color: #ffe600;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.sobre-nosotros a:hover {
+    color: #d9534f;
+    text-decoration: underline;
+}
+
+/* Efecto de sombra para el contenedor */
+.sobre-nosotros:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+/* Responsive: Asegurar que el texto no se sobreponga en pantallas pequeñas */
+@media (max-width: 768px) {
+    .sobre-nosotros h1 {
+        font-size: 2.5rem;
+    }
+    .sobre-nosotros h2 {
+        font-size: 2rem;
+    }
+    .sobre-nosotros h3 {
+        font-size: 1.8rem;
+    }
+    .sobre-nosotros p, .sobre-nosotros ul li {
+        font-size: 1rem;
+    }
 }
